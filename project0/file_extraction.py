@@ -18,12 +18,12 @@ def fetch_incidents(url):
             headers = {}
             headers['User-Agent'] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"                          
             data = urllib.request.urlopen(urllib.request.Request(url, headers=headers)).read()
+            file = open(file_path, 'wb')
+            file.write(data)
+            file.close()
         except:
             print("please provide a valid link and try again.")
             exit()
-    file = open(file_path, 'wb')
-    file.write(data)
-    file.close()
                                          
 def extract_incidents(file_path):
     with open(file_path, 'rb') as file:
