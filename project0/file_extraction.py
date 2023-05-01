@@ -13,9 +13,14 @@ def file_path_generator(url):
 
 def fetch_incidents(url):
     file_path = file_path_generator(url)
-    headers = {}
-    headers['User-Agent'] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"                          
-    data = urllib.request.urlopen(urllib.request.Request(url, headers=headers)).read()
+    if not os.path.exists(file_path):
+        try:
+            headers = {}
+            headers['User-Agent'] = "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17"                          
+            data = urllib.request.urlopen(urllib.request.Request(url, headers=headers)).read()
+        except:
+            print("please provide a valid link and try again.")
+            exit()
     file = open(file_path, 'wb')
     file.write(data)
     file.close()
@@ -44,11 +49,13 @@ def page_to_line(page_list):
         lines_per_page = page_list[i].split('\n')
         for j in range(len(lines_per_page)):
             if not re.search(r'^\d+\/\d+\/\d+ \d+:\d+ \d{4}-\d{8}', lines_per_page[j]):
-                index = lines.index(lines_per_page[j - 1])
-                lines[index] = f'{lines_per_page[j - 1]}{lines_per_page[j]}'
+                try:
+                    index = lines.index(lines_per_page[j - 1])
+                    lines[index] = f'{lines_per_page[j - 1]}{lines_per_page[j]}'
+                except:
+                    continue    
             else:
                 lines.append(lines_per_page[j])
-    
     return lines
 
 def line_incident_parser(line):
