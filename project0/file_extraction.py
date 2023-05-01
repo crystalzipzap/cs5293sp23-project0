@@ -8,8 +8,7 @@ def file_path_generator(url):
     file_name_pattern = r'\d{4}-\d{2}-\d{2}_.*\.pdf'
     result = re.search(file_name_pattern, url)
     file_name = result.group(0)
-    os.makedirs('docs', exist_ok=True)
-    return f'docs/{file_name}'
+    return file_name
 
 def fetch_incidents(url):
     file_path = file_path_generator(url)
@@ -24,10 +23,10 @@ def fetch_incidents(url):
         except:
             print("please provide a valid link and try again.")
             exit()
-                                         
+                               
 def extract_incidents(file_path):
     with open(file_path, 'rb') as file:
-        reader = PdfReader(file_path)
+        reader = PdfReader(file)
         page_list = list()
         for p in range(len(reader.pages)):
             text = reader.pages[p].extract_text()
