@@ -20,7 +20,7 @@ Here is the command using the [March 1st Daily Incident Summary](https://www.nor
 pipenv run python project0/main.py --incidents https://www.normanok.gov/sites/default/files/documents/2023-04/2023-03-31_daily_incident_summary.pdf
 ```
 
-Here is the command using the [April 1st Daily Incident Summary](https://www.normanok.gov/sites/default/files/documents/2023-04/2023-04-01_daily_incident_summary.pdf): 
+Here is the command using the [April 1st Daily Incident Summary](https://www.normanok.gov/sites/default/files/documents/2023-04/2023-04-01_daily_incident_summary.pdf):
 
 ```shell
 pipenv run python project0/main.py --incidents https://www.normanok.gov/sites/default/files/documents/2023-04/2023-04-01_daily_incident_summary.pdf
@@ -150,4 +150,5 @@ WHERE nature != '' GROUP BY nature
 ### Known Bugs
 
 - When testing with the 03-01-2023 Daily Incident Summary file, I encountered 2 entries where the nature fields were "blank". It seems like my parser wasn't able to handle some newlines perfectly.
+- When testing with the 04-15-2023 and 04-25-2023 Daily Incident Summary files, I encountered three entries where the nature fields were "blank". This indicates my parser had issue handling some natures. I suspect there were some natures that are uppercase, and my regular expression cannot identify them properly.
 - I encountered issue when nature includes uppercase letters. The reason is when separating line to the fields for the Incident Object, I set the regular expression to first identify the well-formatted fields like time and ORI, then extract address by finding all cap strings and extract Nature from the rest of the mixed case strings. I came up with this strategy after reviewing the format of the document. The one I am aware is the nature "HWY Traffic Stop". I attempted to handle it by hard coding the check in the Incident class. It works to a degree but is not perfect.
