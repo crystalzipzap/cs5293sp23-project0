@@ -80,7 +80,7 @@ I created three test files to test the given functions. Here is the output. I ra
 pipenv run python -m pytest
 ```
 
-All seven tests are passed. The
+All seven tests are passed. The demo of the test are shown below: 
 
 ![Application pytest run clip 3](docs/p0_demo_clip3.gif)
 
