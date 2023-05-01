@@ -20,13 +20,15 @@ Here is the command using the [March 1st Daily Incident Summary](https://www.nor
 pipenv run python project0/main.py --incidents https://www.normanok.gov/sites/default/files/documents/2023-04/2023-03-31_daily_incident_summary.pdf
 ```
 
-Here is the command using the [April 1st Daily Incident Summary](https://www.normanok.gov/sites/default/files/documents/2023-04/2023-04-01_daily_incident_summary.pdf):
+![Application demo clip 1](docs/p0_demo_clip1.gif)
+
+Here is the command using the [April 1st Daily Incident Summary](https://www.normanok.gov/sites/default/files/documents/2023-04/2023-04-01_daily_incident_summary.pdf): 
 
 ```shell
 pipenv run python project0/main.py --incidents https://www.normanok.gov/sites/default/files/documents/2023-04/2023-04-01_daily_incident_summary.pdf
 ```
 
-gif to follow:
+![Application demo clip 1](docs/p0_demo_clip2.gif)
 
 ## Functions
 
@@ -40,10 +42,10 @@ gif to follow:
 | String     | nature   | The nature of the incident, aka reason for the visit              |
 | String     | ori      | Indicent ORI                                                      |
 
-| Constructor/ Output                                 | Description                                                                                                                                                                                                                                                                                                                                                  |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | --------------- | ------------- | ------------ | --- |
-| **init**(self, time, number, location, nature, ori) | Create an object of Incident based on the provided time, incident, location, nature, and Incident ORI. The constructor handles two edge cases: When the location includes "HWY", and nature is "Traffic Stop", the nature would be updated to "HWY Traffic Stop" to reflect its original state. If nature is left blank, a word 'blank' would be autofilled. |
-| **str**(self)                                       | define the output format for the object to be "f'{self.time}                                                                                                                                                                                                                                                                                                 | {self.number} | {self.location} | {self.nature} | {self.ori}'" |     |
+| Constructor/ Output                                 | Description                                                                                                                                                                                                                                                                                                                                                      |
+|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| __init__(self, time, number, location, nature, ori) | Create an object of Incident based on the provided time, incident, location, nature, and Incident ORI. The constructor handles two edge cases: 1) When the location includes "HWY", and nature is "Traffic Stop", the nature would be updated to "HWY Traffic Stop" to reflect its original state. If nature is left blank, a word 'blank' would be autofilled.  |
+| __str__(self)                                       | define the output format for the object to be "f'{self.time} | {self.number} | {self.location} | {self.nature} | {self.ori}'"                                                                                                                                                                                                                                                                                | {self.number} | {self.location} | {self.nature} | {self.ori}'" |     |
 
 ### file_extraction.py
 
@@ -57,11 +59,11 @@ gif to follow:
 
 ### database.py
 
-| Return Type | Function                   | Description                                                                                                                        |
-| ----------- | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --- |
-| Connection  | createdb()                 | Create a SQLite database named 'normanpd.db' and execute the SQL Command to create a table based on the fields of Incident object. |
-| None        | populatedb(incidents_list) | Take a list of Incident objects and insert the information they contain into the database                                          |
-| None        | status()                   | Output all the natures and the count of incidents per nature, separate them by '                                                   | '   |
+| Return Type | Function                   | Description                                                                                                                         |
+|-------------|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| Connection  | createdb()                 | Create a SQLite database named 'normanpd.db' and execute the SQL Command to create a table based on the fields of Incident object.  |
+| None        | populatedb(incidents_list) | Take a list of Incident objects and insert the information they contain into the database                                           |
+| None        | status()                   | Output all the natures and the count of incidents per nature, separate them by '|'                                                  |                                           | '   |
 
 ## Tests
 
@@ -75,18 +77,7 @@ pipenv run python -m pytest
 
 All seven tests are passed. The
 
-```shell
-============================================================================================================== test session starts ==============================================================================================================
-platform linux -- Python 3.10.6, pytest-7.3.1, pluggy-1.0.0
-rootdir: /home/crystal_z_0616/cs5293sp23-project0
-collected 7 items
-
-project0/test_data_base.py ...                                                                                                                                                                                                            [ 42%]
-project0/test_file_extraction.py ...                                                                                                                                                                                                      [ 85%]
-project0/test_incident.py .                                                                                                                                                                                                               [100%]
-
-=============================================================================================================== 7 passed in 0.75s ===============================================================================================================
-```
+![Application pytest run clip 3](docs/p0_demo_clip3.gif)
 
 ### output test
 
