@@ -21,11 +21,11 @@ def test_file_path_generator():
     assert file_path_generator(url3) == expected3
     
 def test_fetch_incidents(tmp_path):
-    file_path = '2023-03-01_daily_incident_summary.pdf'
+    file_path = 'project0/2023-03-01_daily_incident_summary.pdf'
     assert os.path.exists(file_path)
                                          
 def test_extract_incidents():
-    file_path = '2023-03-01_daily_incident_summary.pdf'
+    file_path = 'project0/2023-03-01_daily_incident_summary.pdf'
     incidents = extract_incidents(file_path)
     assert isinstance(incidents[0], Incident)
 
