@@ -8,7 +8,12 @@ This application populates a SQLite database based on a provided [Daily Incident
 
 # How to install/run
 
-Clone the repo and move into the directory. Then run the command below:
+Clone the repo and move into the directory. Then run the command below to install the required packages:
+
+```shell
+pipenv install
+```
+Run the application via command line: 
 
 ```shell
 pipenv run python project0/main.py --incidents <link of the Daily Incident Summary>
